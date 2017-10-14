@@ -1,0 +1,47 @@
+CREATE TABLE USUARIO(ID INTEGER, 
+                    NOMBRE VARCHAR(40),
+                    EDAD INTEGER,
+                    CONSTRAINT PK_ID PRIMARY KEY (ID));
+                    
+                    INSERT INTO USUARIO VALUES(1, 'MELISA' , 23);
+                    INSERT INTO USUARIO VALUES(2, 'JUAN' , 26);
+                    INSERT INTO USUARIO VALUES(3, 'CESAR' , 23);
+                    INSERT INTO USUARIO VALUES(4, 'MAURICIO' , 23);
+                    
+                    SELECT *FROM USUARIO;
+                    
+                    SET SERVEROUTPUT ON;
+                    
+                    
+                    --VA A MOSTRAR EL NOMBRE DE CADA REGISTRO EN TIEMPO REAL 
+                    DECLARE
+                    CURSOR CUR_1 IS SELECT * FROM USUARIO;
+                    BEGIN
+                    --AQUI VIENE LA LOGICA DEL CURSOR 
+                    FOR FILA IN CUR_1 LOOP 
+                    DBMS_OUTPUT.PUT_LINE('EL NOMBRE ACTUAL ES '|| FILA.NOMBRE);
+                    END LOOP;
+                    END;
+                    /
+                    
+                    --EJERCICO 2: GENERAR UN CURSOR QUE CONTENGA UNA VARIABLE INTERNA 
+                    --Y QUE REALICE LA SIGUIENTE OPERACION SI LA EDAD ES ESTRICTAMENTE
+                    --MAYOR A 30, ASIGNAR SUELDO_BASE UN FACTOR DE 1.5 Y SI ES MENOR 
+                    --NO ASIGNAR EL FACTOR DONDE SUELDO_BASE=6000 PESOS 
+                    
+                    DECLARE 
+                    CURSOR CUR_2 IS SELECT * FROM USUARIO;
+                    SUELDO_BASE INTEGER; 
+                    BEGIN 
+                    --INICIALIZAMOS EL SUELDO BASE  
+                     
+                    FOR FILA IN CUR_2 LOOP 
+                    SUELDO_BASE:=6000;
+                    IF FILA.EDAD > 30 THEN 
+                    SUELDO_BASE:=SUELDO_BASE*1.5;
+                    END IF; 
+                    DBMS_OUTPUT.PUT_LINE('EL SUELDO ES '|| SUELDO_BASE ||' EDAD:' ||FILA.EDAD);
+                    END LOOP; 
+                    END;
+                    /
+                  
