@@ -1,0 +1,49 @@
+CREATE TABLE ALUMNO(CUENTA INTEGER PRIMARY KEY,
+                    NOMBRE VARCHAR2 (80),
+                    SEMESTRE INTEGER);
+                    
+                    INSERT INTO  ALUMNO VALUES (1, 'JUAN', 1);
+                    INSERT INTO  ALUMNO VALUES (2, 'JUAN', 1);
+                    INSERT INTO  ALUMNO VALUES (3, 'JUAN', 1);
+                    INSERT INTO  ALUMNO VALUES (4, 'JUAN', 1);
+                    INSERT INTO  ALUMNO VALUES (5, 'JUAN', 1);
+                    
+                    SELECT * FROM ALUMNO;
+                    
+                    --CREAR UN CURSOR DE TIPO UPDATE, PARA CAMBIAR EL SEMESTRE
+                   --2 PARA TODOS LOS USUARIOS
+                   
+                   DECLARE 
+                   CURSOR CUR_ALUMNO IS SELECT * FROM ALUMNO FOR UPDATE OF SEMESTRE;
+                   BEGIN
+                   --AQUI SE COLOCA LA LOGICA
+                   FOR REC IN CUR_ALUMNO LOOP
+                   UPDATE ALUMNO SET SEMESTRE=2 WHERE CURRENT OF CUR_ALUMNO;
+                   
+                   END LOOP;
+                   END;
+                   /
+                   
+                   SELECT * FROM ALUMNO
+                    
+--  EJERCICIO 2
+
+DROP TABLE MATERIA;
+CREATE TABLE MATERIA (ID_MATERIA INTEGER PRIMARY KEY,
+                      CUENTA INTEGER, 
+                      MATERIA VARCHAR2 (80),
+                      CALIFICACION FLOAT,
+                      CONSTRAINT FK_CUENTAA FOREIGN KEY (CUENTA) REFERENCES ALUMNO (CUENTA));
+                      
+                      INSERT INTO MATERIA VALUES (
+                      
+                      
+                      --INCREMENTO DE 1 EN 1 
+                      
+                      CREATE SEQUENCE SEC_MATERIA 
+                      START WITH 1
+                      INCREMENT BY 1
+                      NOMAXVALUE;
+                      
+                      
+                      SELECT * FROM MATERIA;
